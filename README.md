@@ -1,38 +1,20 @@
-Role Name
-=========
+# Timesyncd Configuration Role
 
-A brief description of the role goes here.
+Configure Ubuntu [timesyncd](https://ubuntu.com/server/docs/about-time-synchronisation#about-timesyncd) to use specific NPT servers.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role is tested on Ubuntu 22.04. There are no other requirements.
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+By default we use the [NRC NTP servers](https://nrc.canada.ca/en/certifications-evaluations-standards/canadas-official-time/network-time-protocol-ntp).
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+| Variable                       | Default         |
+| ------------------------------ | --------------- |
+| timesync_primary_ntp_server    | time.nrc.ca     |
+| timesync_secondary_ntp_server  | time.chu.nrc.ca |
+| timesync_root_distance_max_sec | 5               |
+| timesync_poll_interval_min_sec | 32              |
+| timesync_poll_interval_max_sec | 2048            |
+| timesync_timezone              | UTC             |

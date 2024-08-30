@@ -1,2 +1,29 @@
 ---
-# tasks file for ansible-role-timesync
+# make sure that systemd-timesyncd is installed
+- name: Ensure systemd-timesyncd is installed
+  ansibple.builtin.package:
+    name: systemd-timesyncd
+    state: present
+
+# make sure that systemd-timesyncd is enabled
+- name: Ensure systemd-timesyncd is enabled
+  ansible.builtin.service:
+    name: systemd-timesyncd
+    enabled: true
+    state: started
+
+# place the timesyncd.conf file on the target system
+- name: Place the timesyncd.conf file
+  ansible.builtin.template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    mode: '0644'
+    owner: root
+    group: root
+  notify: Restart systemd-timesyncd
+
+# set timezone
+- name: Set the timezone
+  community.general.timezone:
+    name: "{{ timezone }}"
+  notify: Restart systemd-timesyncd

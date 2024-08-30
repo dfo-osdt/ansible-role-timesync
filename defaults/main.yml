@@ -1,2 +1,8 @@
 ---
 # defaults file for ansible-role-timesync
+timesync_primary_ntp_server: time.nrc.ca
+timesync_secondary_ntp_server: time.chu.nrc.ca
+timesync_root_distance_max_sec: 5
+timesync_poll_interval_min_sec: 32
+timesync_poll_interval_max_sec: 2048
+timesync_timezone: UTC
