@@ -25,5 +25,5 @@
 # set timezone
 - name: Set the timezone
   community.general.timezone:
-    name: "{{ timezone }}"
+    name: "{{ timesync_timezone }}"
   notify: Restart systemd-timesyncd
